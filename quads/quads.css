@@ -1,0 +1,119 @@
+*{
+  margin: 0px; 
+  padding: 0px; 
+  border: 0px; 
+}  
+
+article, section, aside, hgroup, nav, header, footer, figure, figcaption {
+  display: block;
+}
+
+
+
+body{
+      font-family: georgia, arial, sans-serif;
+	  position:relative;
+	  --background: url(../common/gradHor.jpg) repeat-y center top;
+    }
+
+#header{
+	width: auto;
+	height: 100px;
+	background: url(../common/navbar.jpg) repeat-x center top;
+	text-align: center;
+}
+
+#leftSpan{
+	display: inline-block;
+	font-size: 240%;
+	margin: 10px;
+}
+
+#rightSpan{
+	display: inline-block;
+	font-family: georgia italic, sans-serif;
+	font-size: 120%;
+}
+
+#linksDiv{
+	padding: 10px;
+	border-top: 2px solid;
+	border-bottom: 2px solid;
+	text-align: center;
+	background-color: #C9EFF2;
+}
+
+#linksDiv span{
+	margin: 30px;
+}
+
+a{
+	text-decoration: none;
+}
+
+
+#outerDiv{
+	position: relative;
+	margin:0 auto;
+	text-align: center;
+	max-width: 600px;
+}
+
+canvas{
+	position: absolute;
+	background: transparent;
+	left: 10px;
+	top: 10px;
+	border: 3px solid;
+}
+
+#bgCanvas{
+	background-color: #487299
+}
+
+#buttContainer{
+	position: absolute;
+	left: 100px;
+	top: 420px;
+}
+
+.dirButs{
+	width: 50px;
+	height: 50px;
+}
+
+#dummyButt{
+	background: transparent;
+	border: none;
+}
+
+#vertHorTog{
+	position: absolute;
+	left: 420px;
+	top: 200px;
+	width: 50px;
+	height: 50px;
+	font-size: 15px;
+}
+
+#operator{
+	position: absolute;
+	left: 420px;
+	top: 130px;
+	font-size: 150%;
+}
+
+#target{
+	position: absolute;
+	left: 420px;
+	top: 160px;
+	font-size: 150%;
+}
+
+#newGame{
+	position: absolute;
+	left: 420px;
+	top: 260px;
+	width: 100px;
+	height: 50px;
+}

@@ -1,0 +1,71 @@
+*{
+  margin: 0px; 
+  padding: 0px; 
+  border: 0px; 
+}  
+
+article, section, aside, hgroup, nav, header, footer, figure, figcaption {
+  display: block;
+}
+
+
+body{
+      font-family: georgia, arial, sans-serif;
+	  position:relative;
+	  --background: url(../common/gradHor.jpg) repeat-y center top;
+    }
+
+#header{
+	width: auto;
+	height: 100px;
+	background: url(../common/navbar.jpg) repeat-x center top;
+	text-align: center;
+}
+
+#leftSpan{
+	display: inline-block;
+	font-size: 240%;
+	margin: 10px;
+}
+
+#rightSpan{
+	display: inline-block;
+	font-family: georgia italic, sans-serif;
+	font-size: 120%;
+}
+
+#linksDiv{
+	padding: 10px;
+	border-top: 2px solid;
+	border-bottom: 2px solid;
+	text-align: center;
+	background-color: #C9EFF2;
+}
+
+#linksDiv span{
+	margin: 30px;
+}
+
+a{
+	text-decoration: none;
+}
+
+#titletext{
+	float:right;
+	margin-right:30px;
+	margin-bottom:5px;
+	font-size:1.8em;
+	font-family: georgia italic, arial italic, sans-serif;
+}
+
+#scrollablearea{
+	overflow: hidden;
+}
+
+#home-text p{
+	width:60%;
+	margin-left:auto;
+	margin-right:auto;
+	padding: 20px;
+	font-size: 120%;
+}

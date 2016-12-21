@@ -1,0 +1,126 @@
+*{
+  margin: 0px; 
+  padding: 0px; 
+  border: 0px; 
+}  
+
+article, section, aside, hgroup, nav, header, footer, figure, figcaption {
+  display: block;
+}
+
+
+
+body{
+      font-family: georgia, arial, sans-serif;
+	  position:relative;
+	  --background: url(../common/gradHor.jpg) repeat-y center top;
+    }
+
+#header{
+	width: auto;
+	height: 100px;
+	background: url(../common/navbar.jpg) repeat-x center top;
+	text-align: center;
+}
+
+#leftSpan{
+	display: inline-block;
+	font-size: 240%;
+	margin: 10px;
+}
+
+#rightSpan{
+	display: inline-block;
+	font-family: georgia italic, sans-serif;
+	font-size: 120%;
+}
+
+#linksDiv{
+	padding: 10px;
+	border-top: 2px solid;
+	border-bottom: 2px solid;
+	text-align: center;
+	background-color: #C9EFF2;
+}
+
+#linksDiv span{
+	margin: 30px;
+}
+
+a{
+	text-decoration: none;
+}
+*{
+  margin: 0px; 
+  padding: 0px; 
+  border: 0px; 
+}  
+
+article, section, aside, hgroup, nav, header, footer, figure, figcaption {
+  display: block;
+}
+
+
+body{
+      font-family: georgia italic, arial italic, sans-serif;
+	  position:relative;
+	  --background: url(../common/gradHor.jpg) repeat-y center top;
+    }
+
+#descDiv{
+	position: absolute;
+	left: 100px;
+	top: 350px;
+	max-width: 500px;
+}
+	
+#header{
+	width: auto;
+	height: 100px;
+	background: url(../common/navbar.jpg) repeat-x center top;
+	text-align: center;
+}
+
+#leftSpan{
+	font-size: 240%;
+	margin: 50px;
+}
+
+#rightSpan{
+	padding: 20px;
+	font-family: sans-serif;
+	font-size: 120%;
+}
+
+	
+canvas{
+	position: absolute;
+	background: transparent;
+	top: 10px;
+	left: 10px;
+	border: 3px solid;
+}
+
+#fgCanvas{
+	background-color: #888
+}
+
+#imCanvas{
+	position: absolute;
+	background: #666;
+	top: 10px;
+	left: 320px;
+}
+
+#scoreDiv{
+	position: absolute;
+	top: 320px;
+	left: 30px;
+}
+
+#outerDiv{
+	position: relative;
+	margin:0 auto;
+	text-align: center;
+	max-width: 600px;
+}	

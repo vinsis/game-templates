@@ -1,0 +1,86 @@
+*{
+  margin: 0px; 
+  padding: 0px; 
+  border: 0px; 
+}  
+
+article, section, aside, hgroup, nav, header, footer, figure, figcaption {
+  display: block;
+}
+
+
+
+body{
+      font-family: georgia, arial, sans-serif;
+	  position:relative;
+	  --background: url(../common/gradHor.jpg) repeat-y center top;
+    }
+
+#header{
+	width: auto;
+	height: 100px;
+	background: url(../common/navbar.jpg) repeat-x center top;
+	text-align: center;
+}
+
+#leftSpan{
+	display: inline-block;
+	font-size: 240%;
+	margin: 10px;
+}
+
+#rightSpan{
+	display: inline-block;
+	font-family: georgia italic, sans-serif;
+	font-size: 120%;
+}
+
+#linksDiv{
+	padding: 10px;
+	border-top: 2px solid;
+	border-bottom: 2px solid;
+	text-align: center;
+	background-color: #C9EFF2;
+}
+
+#linksDiv span{
+	margin: 30px;
+}
+
+a{
+	text-decoration: none;
+}
+
+#outerDiv{
+	position: relative;
+	margin:0 auto;
+	text-align: center;
+	max-width: 600px;
+}
+
+canvas{
+	position: absolute;
+	background: transparent;
+	top: 10px;
+	left: 10px;
+	border: 3px solid;
+}
+
+#Canvas1{
+	background-color: #176
+}
+
+#timer{
+	position: absolute;
+	left: 220px;
+	top: 475px;
+}
+
+#newGame{
+	position: absolute;
+	left: 500px;
+	top: 250px;
+	width: 100px;
+	height: 50px;
+	border: 2px solid;
+}

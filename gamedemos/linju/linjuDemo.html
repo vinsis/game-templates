@@ -1,0 +1,30 @@
+<html>
+<title>Lin2ju1 - Game Demo</title>
+<head>
+<link rel="stylesheet" type="text/css" href="linjuDemo.css">
+<script language="javascript" type="text/javascript" src="../../common/jquery.min.js"></script>
+<script language="javascript" type="text/javascript" src="linjuDemo.js"></script>
+</head>
+<body>
+<div id="header"><span id="leftSpan">Gamifly</span><br><span id="rightSpan">Play more, learn more</span></div>
+<div id='outerDiv'>
+<span>
+<h3>Lin2 ju1</h3>Lin2 ju2 in Mandarin means neighbor.
+<p>This game is an (over-)simplified simulation of how human settlements take birth. Below are the rules and assumptions guiding the play.</p>
+<ul>
+	<li>Any new member wants to live as close to other members of the colony as possible. So a vacant place close to many neighbors is more attractive than a vacant place in middle of nowhere.</li>
+	<li>This attractiveness is denoted by the number of points for each location in the game. At the beginning when there are no neighbors, each location has attractiveness of zero.</li>
+	<img src="images/im0.png"></img>
+	<li><i>Each occupant raises the attractiveness by (number of neighbors + 1). For example in the figure below, occupant <b>a1</b>'s neighboring locations have attractiveness of 2 since it has one neighbor. Similarly occupant <b>b2</b>'s neighbors have attractiveness of 1 since it has no neighbors. The score at the bottom is the sum of attractiveness of all empty spots. </i></li>
+	<img src="images/im1.png"></img>
+	<li>Only characters of the same category can by neighbors. In the figure above, a1 and a2 can be neighbors while a1 and b1 can't be. The definitions of 'category' is defined in the game itself.</li>
+	<li>There are exactly <b>three</b> categories in each game with four characters in each category. In addition, there are two characters which belong to exactly two categories. In the figure below, character <b>C12</b> belongs to the categories same as <b>a1</b> and <b>b1</b>. That's why it can be neighbors with both. </li>
+	<img src="images/im2.png"></img>
+</ul>
+<p><strong>Aim:</strong>Your aim is to recognize the category of each character and create a colony of characters in a way so as to <b>MAXIMIZE THE ATTRACTIVENESS</b> of the whole arena. In other words, the higher the score, the better. 
+Below is the snapshot of a completed game with a score of 61. Try to score higher than 70 (and then higher than 75).<p>
+</span><img src="images/im3.png"></img>
+</div>
+</div>
+</body>
+</html>

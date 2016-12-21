@@ -1,0 +1,55 @@
+*{
+  margin: 0px; 
+  padding: 0px; 
+  border: 0px; 
+}
+
+body{
+      font-family: georgia italic, arial italic, sans-serif;
+	  position:relative;
+	 background: url(../common/gradHor.jpg) repeat-y center top;
+    }
+
+#header{
+	width: auto;
+	height: 100px;
+	background: url(../common/navbar.jpg) repeat-x center top;
+	text-align: center;
+}
+
+#leftSpan{
+	font-size: 240%;
+	margin: 50px;
+}
+
+#rightSpan{
+	padding: 20px;
+	font-family: sans-serif;
+	font-size: 120%;
+}
+
+canvas{
+	position: absolute;
+	top: 120px;
+	left: 100px;
+	background: transparent;
+	--background-color: #f00
+}
+
+#bgCanvas{
+	background-color: #999;
+}
+
+
+#directions-header, #directions{
+	position: absolute;
+	display: inline-block;
+	background: transparent;
+	left: 510px;
+	top: 120px;
+	padding: 5px;
+}
+
+#directions{
+	top: 140px;
+}

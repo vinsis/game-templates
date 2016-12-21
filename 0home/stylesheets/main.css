@@ -1,0 +1,132 @@
+*{
+  margin: 0px; 
+  padding: 0px; 
+  border: 0px; 
+}  
+
+article, section, aside, hgroup, nav, header, footer, figure, figcaption {
+  display: block;
+}
+
+
+body{
+      font-family: georgia italic, arial italic, sans-serif;
+	  position:relative;
+	  --background: url(../common/grad1.jpg) repeat-x center top;
+    }
+
+#header{
+	width: auto;
+	height: 100px;
+	background: url(../common/navbar.jpg) repeat-x center top;
+	text-align: center;
+}
+
+#leftSpan{
+	font-size: 240%;
+	margin: 50px;
+}
+
+#rightSpan{
+	padding: 20px;
+	font-family: sans-serif;
+	font-size: 120%;
+}
+
+#titletext{
+	float:right;
+	margin-right:30px;
+	margin-bottom:5px;
+	font-size:1.8em;
+	font-family: georgia italic, arial italic, sans-serif;
+}
+
+#scrollablearea{
+	overflow: hidden;
+}
+
+.clear{
+	clear:both;
+}
+
+	
+#home-text, #subscribe-form{
+	--background: url(../common/grad1.jpg) repeat-x center top;
+	font-family: georgia italic, arial italic, sans-serif;
+}
+
+#home-text p{
+	width:70%;
+	margin-left:auto;
+	margin-right:auto;
+	padding: 20px;
+	font-size: 2em;
+}
+
+.description-content{
+	font-family: georgia italic, arial italic, sans-serif;
+	font-size: 2em;
+}
+
+#getfitter{
+	background: url(../common/gradmove.jpg) repeat-x center top;
+	min-height: 500px;
+	text-align:center;
+	padding: 160px 10px 10px 10px;
+}
+
+
+#connecttoothers{
+	background: url(../common/gradconnect.jpg) repeat-x center top;
+	min-height: 500px;
+	text-align:center;
+	padding: 160px 10px 10px 10px;
+}
+
+#explore{
+	background: url(../common/gradexplore.jpg) repeat-x center top;
+	min-height: 500px;
+	text-align:center;
+	padding: 160px 10px 10px 10px;
+}
+
+#getrecommended{
+	background: url(../common/gradrecommend.jpg) repeat-x center top;
+	min-height: 500px;
+	text-align:center;
+	padding: 160px 10px 10px 10px;
+}
+
+#fourimagelogos{
+	margin-left:auto;
+	margin-right:auto;
+	text-align: center;
+}
+
+#fourimagelogos li{
+	display:inline;
+	min-height:200px;
+	padding: 10px 10px 10px 10px;
+}
+
+.categorytags{
+	display:inline-block;
+	border:5px solid #030652;
+	border-radius:25px;
+	margin: 20px;
+}
+
+
+#connectatag{
+	background: url(../common/start.png) no-repeat center top;
+	height: 200px;
+	width:200px;
+	color:transparent;
+}
+
+#exploreatag{
+	background: url(../common/games.png) no-repeat center top;
+	height: 200px;
+	width:200px;
+	color:transparent;
+}

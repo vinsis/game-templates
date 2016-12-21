@@ -1,0 +1,29 @@
+body{
+      font-family: georgia italic, arial italic, sans-serif;
+	  position:relative;
+	  background: url(../common/gradHor.jpg) repeat-y center top;
+    }
+
+canvas{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	background: transparent;
+	border: 3px solid;
+}
+
+#bgCanvas{
+	background-color: #999;
+}
+
+
+div{
+	position: absolute;
+	display: inline-block;
+	background: transparent;
+	left: 680px;
+}
+
+#directions{
+	top: 30px;
+}

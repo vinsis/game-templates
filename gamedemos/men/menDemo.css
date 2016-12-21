@@ -1,0 +1,45 @@
+*{
+  margin: 0px; 
+  padding: 0px; 
+  border: 0px; 
+}
+
+body{
+      font-family: georgia italic, arial italic, sans-serif;
+	  position:relative;
+	 -- background: url(../../common/grad1.jpg) repeat-x center top;
+    }
+
+#header{
+	width: auto;
+	height: 100px;
+	background: url(../../common/navbar.jpg) repeat-x center top;
+	text-align: center;
+}
+
+#leftSpan{
+	font-size: 240%;
+	margin: 50px;
+}
+
+#rightSpan{
+	padding: 20px;
+	font-family: sans-serif;
+	font-size: 120%;
+}	
+
+	
+#outerDiv{
+    list-style-type: none;
+	max-width: 600px;
+	margin-left:auto;
+	margin-right: auto;
+	display: block;
+	text-align: center;
+}
+
+p,ul,span,li,img{
+	padding: 10px;
+	margin: 10px;
+	text-align: center;
+}

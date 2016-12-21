@@ -1,0 +1,100 @@
+*{
+  margin: 0px; 
+  padding: 0px; 
+  border: 0px; 
+}
+
+body{
+      font-family: georgia italic, arial italic, sans-serif;
+	  position:relative;
+	  --background: url(../../common/grad1.jpg) repeat-x center top;
+    }
+
+#header{
+	width: auto;
+	height: 100px;
+	background: url(../../common/navbar.jpg) repeat-x center top;
+	text-align: center;
+}
+
+#leftSpan{
+	font-size: 240%;
+	margin: 50px;
+}
+
+#rightSpan{
+	padding: 20px;
+	font-family: sans-serif;
+	font-size: 120%;
+}	
+
+
+p,ul,span,li,img{
+	padding: 10px;
+	margin: 10px;
+	text-align: center;
+}
+
+#outerDiv{
+    list-style-type: none;
+	max-width: 600px;
+	margin-left:auto;
+	margin-right: auto;
+	--margin-top: 50px;
+	display: block;
+	text-align: center;
+}
+
+canvas, #gameOver{
+	--position: relative;
+	top: 0px;
+	left: 0px;
+	background: transparent;
+	padding-bottom: 30px;
+	--padding-top: 30px;
+}
+
+#game{
+	padding-bottom: 20px;
+}
+
+#bgCanvas{
+	background-color: #277BD6;
+}
+
+
+#directions{
+	--top: 30px;
+}
+
+#color, #charToCreate, #whenComplete{
+	--position: absolute;
+	--top: 300px;
+	--left: 40px;
+	width: 60px;
+	height: 60px;
+	padding: 10px;
+	border: 2px;
+	border-color: #000000;
+	border-style: solid;
+}
+
+#charToCreate{
+	--position: absolute;
+	--top: 300px;
+	--left: 150px;
+	min-width: 40px;
+	min-height: 40px;
+	height: auto;
+	padding: 10px;
+}
+
+#whenComplete{
+	--position: absolute;
+	--top: 200px;
+	--left: 260px;
+	width: 100px;
+	height: auto;
+	padding: 10px;
+	border: none;
+}
