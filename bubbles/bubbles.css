@@ -82,6 +82,12 @@ canvas{
 	top: 495px;
 }
 
+#totalscore{
+  position: absolute;
+	left: 220px;
+	top: 515px;
+}
+
 #newGame{
 	position: absolute;
 	left: 500px;

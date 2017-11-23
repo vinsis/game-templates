@@ -181,6 +181,7 @@
 			console.log('game over');
 			// scores.append(game.playerTime);
 			$('#scoreboard span').text($('#scoreboard span').text() + game.playerTime + '  ');
+			$('#totalscore span').text(parseInt($('#totalscore span').text()) + game.playerTime);
 			cancelRequestAnimFrame(game.handle);
 		}
 
