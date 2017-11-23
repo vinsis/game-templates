@@ -1,8 +1,8 @@
 *{
-  margin: 0px; 
-  padding: 0px; 
-  border: 0px; 
-}  
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+}
 
 article, section, aside, hgroup, nav, header, footer, figure, figcaption {
   display: block;
@@ -96,4 +96,10 @@ canvas{
 .targetBlocks{
 	font-size: 180%;
 	font-weight: bold;
+}
+
+#scoredivs{
+  position: absolute;
+  left: 150;
+  top: 300;
 }

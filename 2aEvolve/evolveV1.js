@@ -13,13 +13,13 @@
 			game.type[3] = 'l2r1';
 			game.type[4] = 'l2r1';
 			game.targetChars[3] = '鼓';
-			game.targetChars[4] = '勵';			
-			
+			game.targetChars[4] = '勵';
+
 			function init(){
 				reDrawCanvas();
 				loop();
 			}
-			
+
 			function reDrawCanvas(){
 				game.charContext.clearRect(0,0,game.width,game.height);
 				game.bgContext.clearRect(0,0,game.width,game.height);
@@ -29,36 +29,46 @@
 					}
 				}
 			}
-			
+
 			function loop(){
 				handle = requestAnimFrame(function() { loop() });
+				$('#timer span').text(--game.playerTime);
+				if(game.playerTime < 0){
+					game.bgContext.font = "bold 20px monaco";
+					game.bgContext.fillStyle = "black";
+					game.bgContext.fillText('Game Over!', game.width/2-50,game.height/2-50);
+					game.speed = 0;
+					cancelRequestAnimFrame(handle);
+					$('#scoreboard span').text($('#scoreboard span').text() + game.playerTime + '  ');
+					$('#totalscore span').text(parseInt($('#totalscore span').text()) + game.playerTime);
+				}
 				update();
 			}
-			
+
 			function update(){
 				var i = getPlayerId(game.mobileImageId);
-				
+
 				if (game.keys[37] && game.images[i].x > 0){//left arrow
 					game.mobileImageLastx = game.images[i].x;
 					game.mobileImageLasty = game.images[i].y;
 					game.images[i].x -= game.speed;
 					updateCodeThatRepeatsOften(i,'left');
 				}
-				
+
 				if (game.keys[39] && game.images[i].x < (game.width - game.images[i].width)){//right arrow
 					game.mobileImageLastx = game.images[i].x;
 					game.mobileImageLasty = game.images[i].y;
 					game.images[i].x += game.speed;
 					updateCodeThatRepeatsOften(i,'right');
 				}
-				
+
 				if (game.keys[38] && game.images[i].y > 0){//up arrow
 					game.mobileImageLastx = game.images[i].x;
 					game.mobileImageLasty = game.images[i].y;
 					game.images[i].y -= game.speed;
 					updateCodeThatRepeatsOften(i,'up');
 				}
-				
+
 				if (game.keys[40] && game.images[i].y < (game.height - game.images[i].height)){//down arrow
 					game.mobileImageLastx = game.images[i].x;
 					game.mobileImageLasty = game.images[i].y;
@@ -66,7 +76,7 @@
 					updateCodeThatRepeatsOften(i,'down');
 				}
 			}
-			
+
 			function updateCodeThatRepeatsOften(i,direction){
 				for(n in game.images)
 				{
@@ -93,12 +103,12 @@
 					renderMobileImage(i,game.mobileImageLastx,game.mobileImageLasty,game.images[i].width,game.images[i].height);
 				}
 			}
-			
+
 			function renderMobileImage(mobileImageId,oldPosx,oldPosy,imageWidth,imageHeight){
 				game.charContext.clearRect(oldPosx,oldPosy,imageWidth,imageHeight);
 				game.charContext.drawImage(game.images[mobileImageId].pic,game.images[mobileImageId].x,game.images[mobileImageId].y);
 			}
-			
+
 			function detectCollision(mobileImage, staticImage, direction){
 				sy1 = staticImage.y;
 				sy2 = staticImage.y + staticImage.height;
@@ -110,7 +120,7 @@
 				mx1 = mobileImage.x;
 				mx2 = mobileImage.x + mobileImage.width;
 				mxmid = mobileImage.x + (mobileImage.width/2);
-				
+
 				if (mobileImage.id == 'player'){
 					if(((mx1>=sx1 && mx1<=sx2) || (mx2>=sx1 && mx2<=sx2)) && ((my1>=sy1 && my1<=sy2) || (my2>=sy1 && my2<=sy2))){
 						game.images.splice(getPlayerId(game.mobileImageId),1);
@@ -118,8 +128,8 @@
 						game.mobileImageId = staticImage.id;
 					}
 				}
-				
-				
+
+
 				else{
 					checkIfGameComplete(mobileImage,staticImage);
 					if(direction == 'right'){
@@ -184,18 +194,20 @@
 					}
 				}
 			}
-			
-			
+
+
 			function checkIfGameComplete(mobileImage,staticImage){
-				if(mobileImage.parent == 'none' && staticImage.parent == 'none'){
+				if(game.playerTime < 0 || (mobileImage.parent == 'none' && staticImage.parent == 'none')){
 					game.bgContext.font = "bold 20px monaco";
 					game.bgContext.fillStyle = "black";
 					game.bgContext.fillText('Game Over!', game.width/2-50,game.height/2-50);
 					game.speed = 0;
 					cancelRequestAnimFrame(handle);
+					$('#scoreboard span').text($('#scoreboard span').text() + game.playerTime + '  ');
+					$('#totalscore span').text(parseInt($('#totalscore span').text()) + game.playerTime);
 				}
 			}
-			
+
 			function createImageNames(charSNo,charType){
 				if(charType.indexOf('l2') >= 0){
 					loadImage(charSNo+'lt',true,charSNo+'l','down');
@@ -231,7 +243,7 @@
 				}
 				loadImage(charSNo+charType,false,'none','none');
 			}
-			
+
 			function loadImage(imageName,displayOnStart,parentName,combineWhenDirectionIs){
 				var image = new Image;
 				image.src = 'images/'+imageName+'.png';
@@ -254,10 +266,10 @@
 				{
 					game.images[i].width = image.width;
 					game.images[i].height = image.height;
-					game.doneImages++; 
+					game.doneImages++;
 				}
 			}
-			
+
 			function checkImages(){
 				if(game.reqdImages <= game.doneImages){
 					init();
@@ -267,13 +279,13 @@
 						{ checkImages(); },1);
 				}
 			}
-			
+
 			function getPlayerId(idName){
 				for(i in game.images){
 					if(game.images[i].id == idName){ return i; }
 				}
 			}
-			
+
 			/**
 			 * Randomize array element order in-place.
 			 * Using Fisher-Yates shuffle algorithm.
@@ -287,14 +299,14 @@
 				}
 				return array;
 			}
-			
+
 			function fitToMerge(movingInDirection,canCombineInDirection,mobileImageParent,staticImageParent){
 				if(movingInDirection == canCombineInDirection && mobileImageParent == staticImageParent){
 					return true;
 				}
 				return false
 			}
-			
+
 			function letsGetRolling(int1, type1, int2, type2){
 				//var game = {};
 				game.width = 400;
@@ -304,16 +316,16 @@
 				//game.imageIds = [];
 				game.doneImages = 0;
 				game.reqdImages = 0;
-				
+
 				game.mobileImageId = 'player';
 				game.mobileImagex = 10;
 				game.mobileImagey = 10;
 				game.mobileImageLastx = game.mobileImagex;
 				game.mobileImageLasty = game.mobileImagey;
-				
+
 				game.keys = [];
 				game.speed = 5;
-				
+
 				game.gridWidth = game.width/10;
 				game.gridHeight = game.gridWidth;
 				game.gridArray = [];
@@ -321,11 +333,11 @@
 					game.gridArray.push(i);
 				}
 				shuffleArray(game.gridArray);
-				
+
 				game.bgContext = document.getElementById('bgCanvas').getContext('2d');
 				game.charContext = document.getElementById('charCanvas').getContext('2d');
-				
-				
+
+
 				$(document).keydown(function(e){
 					game.keys[e.keyCode ? e.keyCode : e.which] = true;
 				});
@@ -339,8 +351,9 @@
 				$('#tb1').text(game.targetChars[int1]);
 				$('#tb2').text(game.targetChars[int2]);
 				checkImages();
+				game.playerTime = 3000;
 			}
-			
+
 			$('#newGame').click(function(){
 				var rand = Math.floor(Math.random()*totalPairs);
 				rand *= 2;
@@ -349,8 +362,8 @@
 				letsGetRolling(rand,game.type[rand],rand+1,game.type[rand]);
 			});
 			letsGetRolling(1,game.type[1],2,game.type[2]);
-			
-		
+
+
 	});
 })();
 
