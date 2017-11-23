@@ -1,8 +1,8 @@
 *{
-  margin: 0px; 
-  padding: 0px; 
-  border: 0px; 
-}  
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+}
 
 article, section, aside, hgroup, nav, header, footer, figure, figcaption {
   display: block;
@@ -116,4 +116,10 @@ canvas{
 	top: 260px;
 	width: 100px;
 	height: 50px;
+}
+
+#scoredivs {
+  position: absolute;
+  left: 420px;
+  top: 500px;
 }

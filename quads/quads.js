@@ -2,7 +2,7 @@
 	$(document).ready(function(){
 		//alert('hola');
 		var game = {};
-		
+
 		function setTarget(){
 			shuffleArray(game.numArr);
 			game.numTarget = Math.floor((((game.numArr[0]+game.numArr[1])*game.numArr[2])-game.numArr[4])/game.numArr[3]);
@@ -18,7 +18,7 @@
 			}
 			$('#target').text('Target: ' + game.numTarget);
 		}
-		
+
 		function resetImageParams(imageArr){
 			for(i in imageArr){
 				imageArr[i].w = imageArr[i].pic.width;
@@ -62,22 +62,22 @@
 				}
 				else if(game.orgX<game.player.x){
 					game.numOperator = "/";
-				}			
+				}
 			}
 			$('#operator').text('Symbol: ' + game.numOperator);
 		}
-		
+
 		function updateNumsOnDisplay(){
 			for(i in game.numArr){
 				game.numsOnDisplay.push({
 					val: game.numArr[i],
 					x: -1,
 					y: -1,
-					used: false					
+					used: false
 				});
 			}
 		}
-		
+
 		function displayNumsOnDisplay(){
 			game.fgContext.clearRect(0,0,game.width,game.height);
 			for(i in game.numsOnDisplay){
@@ -86,7 +86,7 @@
 				}
 			}
 		}
-		
+
 		function changeOrigin(){
 			var boundary = game.boundary;
 			if(game.orgX<boundary || game.orgX>game.width-boundary){
@@ -99,7 +99,7 @@
 			game.orgY += game.velY;
 			updateOperator();
 		}
-		
+
 		function getPlayerRad(){
 			var pRad = -1;
 			var minRad = 20;
@@ -121,7 +121,7 @@
 			pRad += minRad;
 			return pRad;
 		}
-		
+
 		function createPlayerCircle(){
 			game.imContext.clearRect(0,0,game.width,game.height);
 			game.imContext.beginPath();
@@ -142,8 +142,8 @@
 				array[j] = temp;
 			}
 			return array;
-		}		
-		
+		}
+
 		function updateNumCurrent(){
 			for(i in game.numsOnDisplay){
 				if(game.numsOnDisplay[i].used == false){
@@ -157,7 +157,7 @@
 				}
 			}
 		}
-		
+
 		function carryOperation(valA,valB){
 			if(game.numOperator == '-'){
 				return (valA-valB);
@@ -172,7 +172,7 @@
 				return (valA*valB);
 			}
 		}
-		
+
 		function init(){
 			resetImageParams(game.images);
 			resetImageParams(game.imagesV2);
@@ -196,10 +196,10 @@
 					}
 					else{
 						game.quadClicked = 2;
-					}				
+					}
 				}
 				console.log('clicked in quad ' + game.quadClicked);
-			});	
+			});
 			setTarget();
 			updateNumsOnDisplay();
 			var randLoc = Math.random()*game.width;
@@ -213,7 +213,7 @@
 				game.showVer = !game.showVer;
 			});
 			drawCoords(game.showVer,game.showHor);
-			
+
 			//update numsOnDisplay locations
 			for(i=0;i<8;i++){
 				game.numSeq[i] = i;
@@ -223,26 +223,27 @@
 			game.numsOnDisplay[game.numSeq[0]].y = game.width/3;
 			game.numsOnDisplay[game.numSeq[1]].x = 80;
 			game.numsOnDisplay[game.numSeq[1]].y = 2*game.width/3;
-			
+
 			game.numsOnDisplay[game.numSeq[2]].x = game.height-80;
 			game.numsOnDisplay[game.numSeq[2]].y = game.width/3;
 			game.numsOnDisplay[game.numSeq[3]].x = game.height-80;
 			game.numsOnDisplay[game.numSeq[3]].y = 2*game.width/3;
-			
+
 			game.numsOnDisplay[game.numSeq[4]].x = game.width/3;
 			game.numsOnDisplay[game.numSeq[4]].y = 60;
 			game.numsOnDisplay[game.numSeq[5]].x = 2*game.width/3;
 			game.numsOnDisplay[game.numSeq[5]].y = 60;
-			
+
 			game.numsOnDisplay[game.numSeq[6]].x = game.width/3;
 			game.numsOnDisplay[game.numSeq[6]].y = game.height-60;
 			game.numsOnDisplay[game.numSeq[7]].x = 2*game.width/3;
 			game.numsOnDisplay[game.numSeq[7]].y = game.height-60;
 			//update ends
 			displayNumsOnDisplay();
+			game.playerTime = 3000;
 			loop();
 		}
-		
+
 		function loop(){
 			game.handle = requestAnimFrame(function() {
 				loop();
@@ -253,7 +254,7 @@
 			}
 			if (game.keys[39] && game.player.x < game.width){//right
 				game.player.x += game.speed;
-			}			
+			}
 			if (game.keys[38] && game.player.y > 0){//up
 				game.player.y -= game.speed;
 			}
@@ -267,23 +268,33 @@
 			displayNumsOnDisplay();
 			createPlayerCircle();
 			checkIfGameOver();
-			console.log('boo');
+			$('#timer span').text(--game.playerTime);
 		}
-		
+
 		function checkIfGameOver(){
-			if(game.numCurr == game.numTarget || game.numsUsed == 8){
+			if(game.numCurr == game.numTarget || game.numsUsed == 8 || game.playerTime < 0){
 				game.fgContext.clearRect(0,0,game.width,game.height);
 				console.log(game.numCurr);
 				if(game.numCurr == game.numTarget){
 					game.fgContext.fillText('Well Done!!',game.width/2-10,game.height/2);
+					$('#scoreboard span').text($('#scoreboard span').text() + game.playerTime + '  ');
+					$('#totalscore span').text(parseInt($('#totalscore span').text()) + game.playerTime);
 				}
-				else{
+				else if (game.numsUsed == 8){
 					game.fgContext.fillText('No numbers left. Better luck next time!!',20,game.height/2);
+					$('#scoreboard span').text($('#scoreboard span').text() + '0' + '  ');
+					//$('#totalscore span').text(parseInt($('#totalscore span').text()) + game.playerTime);
 				}
+				else {
+					game.fgContext.fillText('Time over!',game.width/2-10,game.height/2);
+					$('#scoreboard span').text($('#scoreboard span').text() + '0' + '  ');
+					//$('#totalscore span').text(parseInt($('#totalscore span').text()) + game.playerTime);
+				}
+
 				cancelRequestAnimFrame(game.handle);
 			}
 		}
-		
+
 		function loadImageFromArrToArr(imageArr,targetArr){
 			game.reqdImages = imageArr.length;
 			game.loadedImages=0;
@@ -306,8 +317,8 @@
 					game.loadedImages++;
 				};
 			}
-		}		
-		
+		}
+
 		function loadImageToArr(imageName,imageArr,loadedImages,reqdImages){
 			var image = new Image;
 			image.src = 'images/'+imageName+'.png';
@@ -327,11 +338,11 @@
 			{
 				imageArr[i].width = image.width;
 				imageArr[i].height = image.height;
-				loadedImages++; 
+				loadedImages++;
 				console.log('images loaded ' + imageName + ',' + loadedImages);
 			}
 		}
-		
+
 		function verifyUploadOfAllImages(){
 			console.log(game.loadedImages + ',' + game.reqdImages);
 			console.log(game.loadedImagesv2 + ',' + game.reqdImagesv2);
@@ -345,7 +356,7 @@
 				},50);
 			}
 		}
-		
+
 		function letsGetRolling(){
 			game.width = 400;
 			game.height = game.width;
@@ -353,19 +364,19 @@
 			game.orgY = game.orgX;
 			game.velX = 2;
 			game.velY = 3;
-			game.quadClicked = -1; 
+			game.quadClicked = -1;
 			game.showVer = false;
 			game.showHor = true;
 			game.expansionCoeff = 0.4;
 			game.boundary = 20;
-			
+
 			game.images = [];
 			game.imagesV2 = [];
 			game.loadedImages = 0;
 			game.reqdImages = 0;
 			game.reqdImagesv2 = 0;
 			game.loadedImagesv2 = 0;
-			
+
 			//numbers settings
 			game.numUpperLim = 10;
 			game.numArr = [];
@@ -377,12 +388,12 @@
 			game.numCurr = 0;
 			game.numsOnDisplay = [];
 			game.numsUsed = 0;
-			
+
 			game.bgContext = document.getElementById('bgCanvas').getContext('2d');
 			game.fgContext = document.getElementById('fgCanvas').getContext('2d');
 			game.imContext = document.getElementById('imCanvas').getContext('2d');
 			game.fgContext.font = "bold 20px monaco";
-			game.fgContext.fillStyle = "black";		
+			game.fgContext.fillStyle = "black";
 			game.bgContext.font = "bold 20px monaco";
 			game.bgContext.fillStyle = "black";
 			game.imContext.font = "bold 20px monaco";
@@ -390,28 +401,28 @@
 			/*if the game involves moving player*/
 			game.keys = [];
 			game.speed = 5;
-			
+
 			game.player = {};
 			game.player.x = -1;
 			game.player.y = -1;
 			game.player.lx = -1;
 			game.player.ly = -1;
 			game.player.r = 0;
-			
+
 			$(document).keydown(function(e){
 				game.keys[e.keyCode ? e.keyCode : e.which] = true;
 			});
 			$(document).keyup(function(e){
 				delete game.keys[e.keyCode ? e.keyCode : e.which];
 			});
-			//moving player setup ends here		
+			//moving player setup ends here
 			imageNamesArr = [
-				
+
 			];
 			loadImageFromArrToArr(imageNamesArr,game.images);
-			verifyUploadOfAllImages();		
+			verifyUploadOfAllImages();
 		}
-		
+
 		$('#newGame').click(function(){
 			cancelRequestAnimFrame(game.handle);
 			letsGetRolling();
