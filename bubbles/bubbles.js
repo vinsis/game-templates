@@ -2,16 +2,16 @@
 	$(document).ready(function(){
 		//alert('hola');
 		var game = {};
-		
-		
+
+
 		function resetImageParams(imageArr){
 			for(i in imageArr){
 				imageArr[i].w = imageArr[i].pic.width;
 				imageArr[i].h = imageArr[i].pic.height;
 				console.log('updated an image with parameters' + i + ',' + imageArr[i].w + ',' + imageArr[i].h);
 			}
-		}		
-		
+		}
+
 		function randBw(a,b){
 			if(a>b){
 				var t = a;
@@ -22,7 +22,7 @@
 			//console.log(temp);
 			return temp;
 		}
-		
+
 		function drawTargetLocation(){
 			game.tarR = 30;
 			var rand = Math.floor(Math.random()*4);
@@ -33,15 +33,15 @@
 			}
 			else if(rand == 1){//top right
 				game.tarX = game.width-game.tarR;
-				game.tarY = game.tarR;			
+				game.tarY = game.tarR;
 			}
 			else if(rand == 2){//bottom left
 				game.tarX = game.tarR;
-				game.tarY = game.height-game.tarR;			
+				game.tarY = game.height-game.tarR;
 			}
 			else if(rand == 3){//bottom right
 				game.tarX = game.width-game.tarR;
-				game.tarY = game.height-game.tarR;			
+				game.tarY = game.height-game.tarR;
 			}
 			game.context3.clearRect(0,0,game.width,game.height);
 			game.context3.fillStyle = '#175157';
@@ -50,7 +50,7 @@
 			game.context3.fill();
 			game.context3.stroke();
 		}
-		
+
 		function init(){
 			resetImageParams(game.images);
 			resetImageParams(game.imagesV2);
@@ -72,11 +72,11 @@
 			drawTargetLocation();
 			loop();
 		}
-		
+
 		function closestDist(x,y){
 			return Math.min(x,game.width-x,y,game.height-y);
 		}
-		
+
 		function drawCircle(context){
 			/*if(game.bubbleNo > game.maxBubbles-1){
 				return;
@@ -95,7 +95,7 @@
 			});
 			game.bubbleNo++;
 		}
-		
+
 		function expandBubbles(context){
 			context.clearRect(0,0,game.width,game.height);
 			context.lineWidth = 1;
@@ -105,7 +105,7 @@
 					game.bubbles[i].y = randBw(game.radDomain,game.width-game.radDomain);
 					game.bubbles[i].r = game.beginRadius;
 					game.bubbles[i].max = closestDist(game.bubbles[i].x,game.bubbles[i].y);
-				} 
+				}
 				else{
 					game.bubbles[i].r += game.bubbles[i].rate;
 				}
@@ -115,7 +115,7 @@
 
 			}
 		}
-		
+
 		function checkIfOutside(){
 			for (i in game.bubbles){
 				var dis = Math.sqrt(Math.pow(game.bubbles[i].x - game.livePic.x, 2) + Math.pow(game.bubbles[i].y - game.livePic.y, 2));
@@ -128,14 +128,14 @@
 			}
 			game.livePic.pic = game.images[1].pic;
 			game.context2.drawImage(game.livePic.pic,game.livePic.x,game.livePic.y);
-			game.playerTime--;
-			$('#timer span').text(game.playerTime);
+			//game.playerTime--;
+			$('#timer span').text(--game.playerTime);
 			if(game.playerTime < 0){
 				finishGame('Game over! No more time left.');
 			}
 			return false;
 		}
-		
+
 		function loop(){
 			game.handle = requestAnimFrame(function() {
 				loop();
@@ -149,43 +149,45 @@
 				console.log('left');
 				game.context2.clearRect(game.livePic.x-1,game.livePic.y-1,game.livePic.w+2,game.livePic.h+2);
 				game.livePic.x -= game.speed;
-				game.context2.drawImage(game.livePic.pic,game.livePic.x,game.livePic.y);				
+				game.context2.drawImage(game.livePic.pic,game.livePic.x,game.livePic.y);
 			}
 			if (game.keys[39] && game.livePic.x < game.width-game.livePic.w){//right
 				game.context2.clearRect(game.livePic.x-1,game.livePic.y-1,game.livePic.w+2,game.livePic.h+2);
 				game.livePic.x += game.speed;
-				game.context2.drawImage(game.livePic.pic,game.livePic.x,game.livePic.y);				
+				game.context2.drawImage(game.livePic.pic,game.livePic.x,game.livePic.y);
 			}
 			if (game.keys[38] && game.livePic.y > 0){//up
 				game.context2.clearRect(game.livePic.x-1,game.livePic.y-1,game.livePic.w+2,game.livePic.h+2);
 				game.livePic.y -= game.speed;
-				game.context2.drawImage(game.livePic.pic,game.livePic.x,game.livePic.y);				
+				game.context2.drawImage(game.livePic.pic,game.livePic.x,game.livePic.y);
 			}
 			if (game.keys[40] && game.livePic.y < game.width-game.livePic.h){//down
 				game.context2.clearRect(game.livePic.x-1,game.livePic.y-1,game.livePic.w+2,game.livePic.h+2);
 				game.livePic.y += game.speed;
-				game.context2.drawImage(game.livePic.pic,game.livePic.x,game.livePic.y);				
+				game.context2.drawImage(game.livePic.pic,game.livePic.x,game.livePic.y);
 			}
 			var tempdist = Math.sqrt(Math.pow(game.tarX - game.livePic.x, 2) + Math.pow(game.tarY - game.livePic.y, 2));
 			if(tempdist < game.tarR-5){
 				finishGame('Player reached the target. Well done!');
-			}		
+			}
 			//checkIfOutside();
 			//console.log('boo');
 			//continue the game
 		}
-		
+
 		function finishGame(text){
 			game.context1.fillText(text,20,game.height/2);
 			game.speed = 0;
 			console.log('game over');
+			// scores.append(game.playerTime);
+			$('#scoreboard span').text($('#scoreboard span').text() + game.playerTime + '  ');
 			cancelRequestAnimFrame(game.handle);
 		}
-		
+
 		function renderImage(image, xLoc, yLoc,context){
 			context.drawImage(image.pic, xLoc, yLoc);
 		}
-		
+
 		function loadImageFromArrToArr(imageArr,targetArr){
 			game.reqdImages = imageArr.length;
 			game.loadedImages=0;
@@ -208,8 +210,8 @@
 					game.loadedImages++;
 				};
 			}
-		}		
-		
+		}
+
 		function loadImageToArr(imageName,imageArr,loadedImages,reqdImages){
 			var image = new Image;
 			image.src = 'images/'+imageName+'.png';
@@ -229,11 +231,11 @@
 			{
 				imageArr[i].width = image.width;
 				imageArr[i].height = image.height;
-				loadedImages++; 
+				loadedImages++;
 				console.log('images loaded ' + imageName + ',' + loadedImages);
 			}
 		}
-		
+
 		function verifyUploadOfAllImages(){
 			console.log(game.loadedImages + ',' + game.reqdImages);
 			console.log(game.loadedImagesv2 + ',' + game.reqdImagesv2);
@@ -247,8 +249,8 @@
 				},50);
 			}
 		}
-		
-		
+
+
 		function letsGetRolling(){
 			game.images = [];
 			game.imagesV2 = [];
@@ -256,7 +258,7 @@
 			game.reqdImages = 0;
 			game.reqdImagesv2 = 0;
 			game.loadedImagesv2 = 0;
-			
+
 			game.width = 450;
 			game.height = game.width;
 			game.bubbleNo = 0;
@@ -266,18 +268,18 @@
 			game.maxBubbles = 3;
 			game.livePic = {};
 			game.playerTime = 30;
-			
+
 			game.context1 = document.getElementById('Canvas1').getContext('2d');
 			game.context2 = document.getElementById('Canvas2').getContext('2d');
 			game.context3 = document.getElementById('Canvas3').getContext('2d');
 			game.context4 = document.getElementById('Canvas3').getContext('2d');
 			game.context5 = document.getElementById('Canvas3').getContext('2d');
 			game.context1.font = "bold 20px monaco";
-			
+
 			/*if the game involves moving player*/
 			game.keys = [];
 			game.speed = 5;
-			
+
 			game.mobileImageLastx = -1;
 			game.mobileImageLasty = -1;
 			game.mobileImageId = 'player';
@@ -293,14 +295,14 @@
 				'origin','outside'
 			];
 			loadImageFromArrToArr(imageNamesArr,game.images);
-			verifyUploadOfAllImages();		
+			verifyUploadOfAllImages();
 		}
-		
+
 		$('#newGame').click(function(){
 			cancelRequestAnimFrame(game.handle);
 			letsGetRolling();
 		});
-		
+
 		letsGetRolling();
 	});
 

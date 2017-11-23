@@ -1,8 +1,8 @@
 *{
-  margin: 0px; 
-  padding: 0px; 
-  border: 0px; 
-}  
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+}
 
 article, section, aside, hgroup, nav, header, footer, figure, figcaption {
   display: block;
@@ -74,6 +74,12 @@ canvas{
 	position: absolute;
 	left: 220px;
 	top: 475px;
+}
+
+#scoreboard{
+	position: absolute;
+	left: 220px;
+	top: 495px;
 }
 
 #newGame{
